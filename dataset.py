@@ -1,17 +1,15 @@
 import datetime
 import logging
+import os
 import quandl
-import scipy
-
-from datetime import date
 
 
 class FREDDataset:
-    def __init__(self, headers, start_date, end_date, api_key):
+    def __init__(self, headers, start_date, end_date):
         self.headers = headers
         self.start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
         self.end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
-        quandl.ApiConfig.api_key = api_key
+        quandl.ApiConfig.api_key = os.environ.get("QUANDL_API_KEY")
 
         # TODO (christian.abbott):
         # To scale to larger datasets, use pagination and don't store everything in memory at once.

@@ -36,11 +36,9 @@ FRED_CODES = [
 
 @click.group()
 @click.option("--verbosity", default="INFO")
-@click.option("--api-key", required=True)
 @click.pass_context
-def cli(ctx, verbosity, api_key):
+def cli(ctx, verbosity):
     ctx.obj = {}
-    ctx.obj['api-key'] = api_key
     ctx.obj['client'] = influxdb.DataFrameClient(host=DEFAULT_HOST, port=DEFAULT_PORT, database=DEFAULT_DB_NAME)
     logging.basicConfig(
         level=LOGGING_LEVELS[verbosity.upper()],
@@ -64,8 +62,7 @@ def download_and_insert(ctx, headers, start_date, end_date, measurement):
     dataset = FREDDataset(
         headers=headers,
         start_date=start_date,
-        end_date=end_date,
-        api_key=ctx.obj['api-key'])
+        end_date=end_date)
 
     logging.info(f"Inserting points into {DEFAULT_DB_NAME}/{measurement} ...")
 
@@ -85,8 +82,7 @@ def download_and_insert(ctx, headers, start_date, end_date, measurement):
 def data_summary(ctx, measurement):
     # Obviously with larger databases we won't use SELECT *, but this is fine for now
     df = ctx.obj['client'].query(f"SELECT * FROM {measurement}")[measurement]
-
-
+    logging.info(df)
 
 
 if __name__ == '__main__':
