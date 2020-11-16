@@ -25,6 +25,12 @@ python fred_ingest.py create-database
 python fred_ingest.py download-and-insert interest_rates_raw
 ```
 
+**To query the database:**
+```
+influx -database FRED
+> SELECT * FROM interest_rates_raw ORDER BY DESC
+```
+
 **To tear down:**  
 ```bash
 ./devDatabase.sh stop
