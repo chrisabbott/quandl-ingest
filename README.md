@@ -9,7 +9,9 @@
 
 **Setup your environment:**
 ```bash
-pyenv install 3.7.9 && pyenv virtualenv 3.7.9 quandl && pyenv activate quandl
+pyenv install 3.7.9
+pyenv virtualenv 3.7.9 quandl
+pyenv activate quandl
 pip install -r requirements.txt
 ```
 
