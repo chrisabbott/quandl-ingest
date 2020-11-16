@@ -4,8 +4,13 @@
 **Requirements:**
 - Python 3.7.9
 - [Docker](https://docs.docker.com/get-docker/)
-- [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/introduction/install/) (only required if you want to interact with the database directly)
-- [Pyenv](https://github.com/pyenv/pyenv-installer) (recommended)
+- [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/introduction/install/)
+- [Pyenv](https://github.com/pyenv/pyenv-installer) (not required but highly recommended)
+
+**To do:**
+- Write a setup script to launch everything
+- Containerize `fred_ingest.py` and `influxdb` CLIs
+- Add data cleaning utilities (Date validation, Z-score) and a summary feature
 
 **Setup your environment:**
 ```bash
